@@ -8,24 +8,26 @@ const App = () => {
     const [weather, setWeather] = useState({});
     
     const searchWeather = async (e) => {
-        if(e.key === 'Enter') {
             const data = await weatherApi(query);
             setWeather(data);
             setQuery('');
-        }
+        
     }
 
     return (
         <div className="mainContainer">
             <h1> Weather App</h1>
+            <div className="container">
+            
             <input 
             type="text"
             className="search"
             placeholder="Weather in your city "
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyPress={searchWeather}
             />
+            <button onClick ={(e) => searchWeather()} className="button"> Search </button>
+            </div>
             {weather.main && (
                 <div className="city">
                     <h2 className="cityName">
